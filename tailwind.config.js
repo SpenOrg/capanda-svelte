@@ -9,3 +9,8 @@ export default {
   ],
 }
 
+module.exports = {
+  daisyui: {
+    themes: ["light"],
+  },
+}
