@@ -21,11 +21,16 @@ export default {
     themes: [
       {
         capanda: {
-          "accent": colors['capanda-red'],
-          "neutral": colors['capanda-blue'],
-          "secondary": colors['capanda-light-grey'],
-          "base-200": colors['capanda-grey'],
-          "base-300": colors['capanda-dark-grey'],
+          "primary": colors['capanda-grey'],
+          "primary-content": "#000000",
+          "secondary": colors['capanda-dark-grey'],
+          "secondary-content": "#FFFFFF",
+          "accent": colors['capanda-blue'],
+          "accent-content": "#FFFFFF",
+          "neutral": colors['capanda-light-grey'],
+          "neutral-content": "#000000",
+          "error": colors['capanda-red'],
+          "error-content": "#FFFFFF"
         },
       },
     ],

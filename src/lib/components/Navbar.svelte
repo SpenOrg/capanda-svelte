@@ -8,13 +8,13 @@
   </div>
   <div class="navbar-center">
     <ul class="menu menu-horizontal max-lg:hidden lg:text-xl">
-      <li><a>Value</a></li>
-      <li><a>Leadership</a></li>
-      <li><a>Dedication</a></li>
-      <li><a>Focus</a></li>
+      <li class="hover:text-capanda-red"><a>Value</a></li>
+      <li class="hover:text-capanda-red"><a>Leadership</a></li>
+      <li class="hover:text-capanda-red"><a>Dedication</a></li>
+      <li class="hover:text-capanda-red"><a>Focus</a></li>
     </ul>
   </div>
   <div class="navbar-end">
-    <a class="btn btn-accent">Button</a>
+    <a class="btn btn-error text-base">Contact Us</a>
   </div>
 </div>
