@@ -2,7 +2,15 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'capanda-light-grey': '#f8f9fa',
+        'capanda-blue': '#0e2c57',
+        'capanda-grey': '#ededed',
+        'capanda-dark-grey': '#14171c',
+        'capanda-red': '#aa0000',
+      },
+    },
   },
   plugins: [
     require('daisyui'),
