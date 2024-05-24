@@ -15,6 +15,10 @@
     </ul>
   </div>
   <div class="navbar-end">
+    <ul class="pr-2 text-right max-sm:hidden">
+      <li><a class="cursor-pointer">613-831-7630</a></li>
+      <li><a class="cursor-pointer">info@capanda.ca</a></li>
+    </ul>
     <a class="btn btn-error text-base">Contact Us</a>
   </div>
 </div>
