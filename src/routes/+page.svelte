@@ -60,7 +60,7 @@
 <Panel
   imageUrl="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
   header="Box Office News!"
-  text="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."
+  text={["Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."]}
   top={viewportHeight*2}
   bgColorClass="bg-capanda-grey"
   textColorClass="text-black"
