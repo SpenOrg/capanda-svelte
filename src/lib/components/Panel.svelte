@@ -13,37 +13,32 @@
     let panelBottom;
     let topVisible;
     let bottomVisible;
+    let panel;
+
+    const show = () => panel.style.opacity = 100;
+    const hide = () => panel.style.opacity = 0;
 
     function handleVisibilityChange(entries) {
         entries.forEach(entry => {
-        let panelDiv = entry.target.closest(".panel");
-        if (entry.isIntersecting) {
-            if (entry.target.className == "panel-top") {
-                topVisible = true;
+            switch(entry.target.className) {
+                case "panel-top":
+                    topVisible = entry.isIntersecting;
+                    break;
+                case "panel-bottom":
+                    bottomVisible = entry.isIntersecting;
+                    break;
             }
-            if (entry.target.className == "panel-bottom") {
-                bottomVisible = true;
-            }
-
             if (topVisible && bottomVisible) {
                 console.log(`Both top and bottom of ${header} visible`);
-            }
-        } else {
-            if (entry.target.className == "panel-top") {
-                topVisible = false;
-            }
-            if (entry.target.className == "panel-bottom") {
-                bottomVisible = false;
-            }
-
-            if (!topVisible && !bottomVisible) {
+            } else if (!topVisible && !bottomVisible) {
                 console.log(`Both top and bottom of ${header} NOT visible`);
-            }            
-        }
+            }
         });
     }
 
     onMount(() => {
+        panel = panelTop.closest(".panel");
+
         const observer = new IntersectionObserver(handleVisibilityChange, {
             root: null, // Observes changes relative to the viewport
             threshold: 0.1 // 10% of the item is visible
