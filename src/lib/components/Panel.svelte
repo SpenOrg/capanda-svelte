@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import { panelInstanceCount } from '$lib/store.js';
 
     export let imageUrl;
     export let header;
@@ -14,6 +15,7 @@
     let topVisible;
     let bottomVisible;
     let panel;
+    let panelNumber;
 
     const show = () => panel.style.opacity = 100;
     const hide = () => panel.style.opacity = 0;
@@ -29,15 +31,17 @@
                     break;
             }
             if (topVisible && bottomVisible) {
-                console.log(`Both top and bottom of ${header} visible`);
+                console.log(`Both top and bottom of panel${panelNumber} visible`);
             } else if (!topVisible && !bottomVisible) {
-                console.log(`Both top and bottom of ${header} NOT visible`);
+                console.log(`Both top and bottom of panel${panelNumber} NOT visible`);
             }
         });
     }
 
     onMount(() => {
         panel = panelTop.closest(".panel");
+
+        panelInstanceCount.update(n => panelNumber = n + 1);
 
         const observer = new IntersectionObserver(handleVisibilityChange, {
             root: null, // Observes changes relative to the viewport
