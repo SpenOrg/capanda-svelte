@@ -8,6 +8,7 @@
   import logotext from "$lib/assets/logo-text.webp";
   import Panel from "$lib/Components/Panel.svelte";
   import {onMount} from "svelte";
+	import VisibilityHandler from "../lib/components/VisibilityHandler.svelte";
 
   let viewportHeight = 0;
 
@@ -66,3 +67,5 @@
   textColorClass="text-black"
   imageRight=true
 />
+
+<VisibilityHandler/>

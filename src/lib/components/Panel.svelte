@@ -5,8 +5,8 @@
     export let imageUrl, header, text = [], bgColorClass, textColorClass, top, imageRight = false;
     let panelTop, panelBottom, topVisible, bottomVisible, panel, panelNumber;
 
-    const show = () => panel.style.opacity = 100;
-    const hide = () => panel.style.opacity = 0;
+    // const show = () => panel.style.opacity = 100;
+    // const hide = () => panel.style.opacity = 0;
 
     function handleVisibilityChange(entries) {
         entries.forEach(entry => {
@@ -24,9 +24,7 @@
     }
 
     onMount(() => {
-        panel = panelTop.closest(".panel");
         panelInstanceCount.update(n => panelNumber = n + 1);
-
         panelVisibility[panelNumber] = { top: false, bottom: false };
 
         const observer = new IntersectionObserver(handleVisibilityChange, {
