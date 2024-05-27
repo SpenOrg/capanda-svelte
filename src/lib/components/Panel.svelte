@@ -1,21 +1,9 @@
 <script>
     import { onMount } from 'svelte';
-    import { panelInstanceCount } from '$lib/store.js';
+    import { panelInstanceCount, panelVisibility } from '$lib/store.js';
 
-    export let imageUrl;
-    export let header;
-    export let text = [];
-    export let bgColorClass;
-    export let textColorClass;
-    export let top;
-    export let imageRight = false;
-
-    let panelTop;
-    let panelBottom;
-    let topVisible;
-    let bottomVisible;
-    let panel;
-    let panelNumber;
+    export let imageUrl, header, text = [], bgColorClass, textColorClass, top, imageRight = false;
+    let panelTop, panelBottom, topVisible, bottomVisible, panel, panelNumber;
 
     const show = () => panel.style.opacity = 100;
     const hide = () => panel.style.opacity = 0;
@@ -30,18 +18,16 @@
                     bottomVisible = entry.isIntersecting;
                     break;
             }
-            if (topVisible && bottomVisible) {
-                console.log(`Both top and bottom of panel${panelNumber} visible`);
-            } else if (!topVisible && !bottomVisible) {
-                console.log(`Both top and bottom of panel${panelNumber} NOT visible`);
-            }
+            panelVisibility[panelNumber].top = topVisible;
+            panelVisibility[panelNumber].bottom = bottomVisible;
         });
     }
 
     onMount(() => {
         panel = panelTop.closest(".panel");
-
         panelInstanceCount.update(n => panelNumber = n + 1);
+
+        panelVisibility[panelNumber] = { top: false, bottom: false };
 
         const observer = new IntersectionObserver(handleVisibilityChange, {
             root: null, // Observes changes relative to the viewport
@@ -57,6 +43,7 @@
         };
     });
 </script>
+
 
 
 <div class="panel absolute min-h-screen w-screen {bgColorClass} {textColorClass} py-10" style="top:{top}px">
