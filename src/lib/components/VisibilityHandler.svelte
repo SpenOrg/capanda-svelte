@@ -13,7 +13,7 @@
         panels = [];
         const panelElements = document.querySelectorAll(".panel");
         
-        for (let i = 0; i < panelCount; i++) {
+        for (let i = 0; i <= panelCount; i++) {
             panels[i] = {
                 element: panelElements[i],
                 topVisible: false, // See setVisibilityProperties()
@@ -22,6 +22,9 @@
         }
         panelsInitialized = true;
         setVisibilityProperties();
+
+        // Expose panels to the global scope
+        window.panels = panels;
     }
 
     // Function to set visibility properties of panels
@@ -63,5 +66,4 @@
     $: if (panelCount > 0) {
         initializePanels();
     }
-
 </script>
