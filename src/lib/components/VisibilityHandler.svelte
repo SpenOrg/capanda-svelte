@@ -22,9 +22,6 @@
         }
         panelsInitialized = true;
         setVisibilityProperties();
-
-        // Expose panels to the global scope
-        window.panels = panels;
     }
 
     // Function to set visibility properties of panels
