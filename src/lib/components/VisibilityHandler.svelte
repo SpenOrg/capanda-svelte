@@ -17,7 +17,13 @@
             panels[i] = {
                 element: panelElements[i],
                 topVisible: false, // See setVisibilityProperties()
-                bottomVisible: false
+                bottomVisible: false,
+                show() {
+                    this.element.style.opacity = 100
+                },
+                hide() {
+                    this.element.style.opacity = 0
+                }
             };
         }
         panelsInitialized = true;
@@ -32,6 +38,16 @@
                 panel.bottomVisible = panelVisibility[i].bottom;
             });
         }
+    }
+
+    function switchToPanel(panelIndex) {
+        panels.forEach((panel, i) => {
+            if (i === panelIndex) {
+                panel.show();
+            } else {
+                panels.hide();
+            }
+        });
     }
 
     // Debounce function to limit the rate of function calls
