@@ -45,7 +45,7 @@
             if (i === panelIndex) {
                 panel.show();
             } else {
-                panels.hide();
+                panel.hide();
             }
         });
     }
@@ -59,19 +59,31 @@
         };
     }
 
+    function handleScrollResize() {
+        setVisibilityProperties();
+        if (panelsInitialized) {
+            panels.forEach((panel, i) => {
+                if (panel.topVisible) {
+                    switchToPanel(i);
+                    return;
+                }
+            });
+        } 
+    }
+
     onMount(() => {
         initializePanels();
 
-        const debouncedSetVisibilityProperties = debounce(setVisibilityProperties, 100);
+        const debouncedHandleScrollResize = debounce(handleScrollResize, 10);
 
         // Re-check if the panels are visible when the user scrolls or resizes
-        document.addEventListener("scroll", debouncedSetVisibilityProperties);
-        document.addEventListener("resize", debouncedSetVisibilityProperties);
+        document.addEventListener("scroll", debouncedHandleScrollResize);
+        document.addEventListener("resize", debouncedHandleScrollResize);
 
         // Clean up event listeners on component unmount
         return () => {
-            document.removeEventListener("scroll", debouncedSetVisibilityProperties);
-            document.removeEventListener("resize", debouncedSetVisibilityProperties);
+            document.removeEventListener("scroll", debouncedHandleScrollResize);
+            document.removeEventListener("resize", debouncedHandleScrollResize);
         };
     });
 
