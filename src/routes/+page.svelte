@@ -59,10 +59,29 @@
 />
 
 <Panel
-  imageUrl="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-  header="Box Office News!"
-  text={["Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."]}
+  imageUrl={leadershipImg}
+  header="We Lead the Way"
+  text={["Through recognition that demonstrates hands-on experience & results, real-world delivery has proven that we are more than just words","Through all aspects of the system development & product lifecycle, and via extensive experience in the development of corporate architecture, systems, solutions, & programs, your organization can harness the value of sustainability", "Via hands-on expertise throughout the systems development lifecycle, your organization can reap the reward of senior Project Leadership, Human Resource Management, Financial Management, Change Management, and a wealth of additional key experience"]}
   top={viewportHeight*2}
+  bgColorClass="bg-capanda-grey"
+  textColorClass="text-black"
+  imageRight=true
+/>
+
+<Panel
+  imageUrl={dedicationImg}
+  header="Our Dedication"
+  text={["Through the delivery of numerous corporate-level Federal Government requirements such as International Service Delivery, departmental Software Asset Management Program, and Product Management, Millions of dollars of savings to the tax-payer have been realized","Through our continuing focus and refinement, your organization will value from similar savings through our advice to your Solution & Program teams", "Beyond any of your immediate needs, and through concentration on Architecture and Solution Advisory services in support of sustainable Business-process automation, Object-Oriented Systems Design & Development, and corporate Program delivery, we are focused to help you establish a sustainable future"]}
+  top={viewportHeight*3}
+  bgColorClass="bg-capanda-dark-grey"
+  textColorClass="text-white"
+/>
+
+<Panel
+  imageUrl={focusImg}
+  header="Advanced Focus"
+  text={["Through further corporate focus, and as witnessed throughout numerous Public & Private sector organizations, you will realize value from our extensive experience to resolve ongoing Software Asset Management challenges", "Whether challenges involve effective policy enactment or advanced program delivery, real-world experience will be applied to advance your organization’s maturity","By continuing to apply hands-on experience, we are focused to help you:","• Establish Centres of Expertise through industry best practices;", "• Save organization & tax-payer dollars by promoting component reuse and data sharing utilizing environment models for the consolidation of Application layer services; and", "• Deliver advanced presentation/leadership direction to your organization’s Senior Management, IT groups, and Public Forums"]}
+  top={viewportHeight*4}
   bgColorClass="bg-capanda-grey"
   textColorClass="text-black"
   imageRight=true
