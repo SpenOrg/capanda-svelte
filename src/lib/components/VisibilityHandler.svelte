@@ -1,5 +1,5 @@
 <script>
-    import { panelInstanceCount, panelVisibility } from '$lib/store.js';
+    import { panelInstanceCount, panelVisibility, currentPanel } from '$lib/store.js';
     import { onMount } from 'svelte';
 
     let panelCount = 0;
@@ -43,6 +43,7 @@
     function switchToPanel(panelIndex) {
         panels.forEach((panel, i) => {
             if (i === panelIndex) {
+                currentPanel.set(i);
                 panel.show();
             } else {
                 panel.hide();

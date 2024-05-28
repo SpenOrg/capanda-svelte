@@ -9,6 +9,7 @@
   import Panel from "$lib/Components/Panel.svelte";
   import {onMount} from "svelte";
 	import VisibilityHandler from "../lib/components/VisibilityHandler.svelte";
+  import BackgroundColorHandler from "../lib/components/BackgroundColorHandler.svelte";
 
   let viewportHeight = 0;
 
@@ -31,7 +32,7 @@
 
 <Navbar/>
 
-<!-- First Panel -->
+<!-- Top Panel -->
 <div class="absolute min-h-screen w-screen text-center text-neutral-content py-10" style="background-image: url({panorama})">
   <div class="relative mx-5 xl:m-auto max-w-6xl" style="top:100px">
     <h1>
@@ -88,3 +89,4 @@
 />
 
 <VisibilityHandler/>
+<BackgroundColorHandler/>
