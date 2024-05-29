@@ -42,8 +42,6 @@
     });
 </script>
 
-
-
 <div class="panel absolute min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity py-10" style="top:{top}px">
     <div class="relative mx-5 xl:m-auto max-w-6xl" style="top:100px">
         <div class="panel-top" bind:this={panelTop}></div>

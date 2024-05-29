@@ -1,6 +1,6 @@
 <script>
     import { panelInstanceCount, panelVisibility, currentPanel } from '$lib/store.js';
-    import { onMount } from 'svelte';
+    import { onMount, tick } from 'svelte';
 
     let panelCount = 0;
     let panels = [];
@@ -28,6 +28,7 @@
         }
         panelsInitialized = true;
         setVisibilityProperties();
+        setPanelPositions();
     }
 
     // Function to set visibility properties of panels
@@ -60,7 +61,7 @@
         };
     }
 
-    function handleScrollResize() {
+    function handleScroll() {
         setVisibilityProperties();
         if (panelsInitialized) {
             panels.forEach((panel, i) => {
@@ -72,19 +73,41 @@
         } 
     }
 
+    function handleResize() {
+        handleScroll();
+        setPanelPositions();
+    }
+
+    async function setPanelPositions() {
+        if (panelsInitialized) {
+            await tick();
+            let panelBottomY = []
+            panels.forEach((panel, i) => {
+                let bottomRect = panel.element.querySelector(".panel-bottom").getBoundingClientRect();
+                panelBottomY[i] = bottomRect.top;
+                console.log(panelBottomY);
+                
+                if (i > 0) {
+                    panel.element.style.top = `${panelBottomY[i-1]}px`
+                }
+            });
+        }
+    }
+
     onMount(() => {
         initializePanels();
 
-        const debouncedHandleScrollResize = debounce(handleScrollResize, 10);
+        const debouncedHandleScroll = debounce(handleScroll, 10);
+        const debouncedHandleResize = debounce(handleResize, 100);
 
         // Re-check if the panels are visible when the user scrolls or resizes
-        document.addEventListener("scroll", debouncedHandleScrollResize);
-        document.addEventListener("resize", debouncedHandleScrollResize);
+        document.addEventListener("scroll", debouncedHandleScroll);
+        document.addEventListener("resize", debouncedHandleResize);
 
         // Clean up event listeners on component unmount
         return () => {
-            document.removeEventListener("scroll", debouncedHandleScrollResize);
-            document.removeEventListener("resize", debouncedHandleScrollResize);
+            document.removeEventListener("scroll", debouncedHandleScroll);
+            document.removeEventListener("resize", debouncedHandleResize);
         };
     });
 
