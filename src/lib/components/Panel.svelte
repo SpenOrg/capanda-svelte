@@ -2,11 +2,8 @@
     import { onMount } from 'svelte';
     import { panelInstanceCount, panelVisibility } from '$lib/store.js';
 
-    export let imageUrl, header, text = [], bgColorClass, textColorClass, top, imageRight = false;
+    export let imageUrl, header, text = [], bgColorClass, textColorClass, imageRight = false;
     let panelTop, panelBottom, topVisible, bottomVisible, panel, panelNumber;
-
-    // const show = () => panel.style.opacity = 100;
-    // const hide = () => panel.style.opacity = 0;
 
     function handleVisibilityChange(entries) {
         entries.forEach(entry => {
@@ -18,14 +15,14 @@
                     bottomVisible = entry.isIntersecting;
                     break;
             }
-            panelVisibility[panelNumber].top = topVisible;
-            panelVisibility[panelNumber].bottom = bottomVisible;
+            panelVisibility[0].top = topVisible;
+            panelVisibility[0].bottom = bottomVisible;
         });
     }
 
     onMount(() => {
         panelInstanceCount.update(n => panelNumber = n + 1);
-        panelVisibility[panelNumber] = { top: false, bottom: false };
+        panelVisibility[0] = { top: false, bottom: false };
 
         const observer = new IntersectionObserver(handleVisibilityChange, {
             root: null, // Observes changes relative to the viewport
@@ -42,7 +39,7 @@
     });
 </script>
 
-<div class="panel absolute min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity py-10" style="top:{top}px">
+<div class="panel min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity py-10">
     <div class="relative mx-5 xl:m-auto max-w-6xl" style="top:100px">
         <div class="panel-top" bind:this={panelTop}></div>
         <div class="m-auto max-w-fit flex flex-col {imageRight ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center">

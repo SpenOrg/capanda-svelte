@@ -2,6 +2,7 @@
     import Navbar from "$lib/components/Navbar.svelte";
     import valueImg from "$lib/assets/value.webp";
     import Panel from "$lib/Components/Panel.svelte";
+    import PanelPlaceholder from "$lib/Components/PanelPlaceholder.svelte"
 </script>
 
 <Navbar/>
@@ -16,7 +17,10 @@
     "Don’t relive your old ways by seeking heroes to keep your head above water – True value comes from sustainable & proven architectural practices that bind themselves to your organization’s DNA",
     "Digital transformation is more than just changing or upgrading, true value is the result of applying proven practices towards sustainable services that remain nimble to adapt to the ever-changing digital world"
   ]}
-  top=100
   bgColorClass="bg-capanda-blue"
   textColorClass="text-white"
 />
+
+<PanelPlaceholder/>
+<PanelPlaceholder/>
+<PanelPlaceholder/>
