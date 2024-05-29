@@ -78,6 +78,8 @@
         setPanelPositions();
     }
 
+    // Sets the "top" position of each panel to the previous panel's .panel-bottom,
+    // which sits just below the content within that panel
     async function setPanelPositions() {
         if (panelsInitialized) {
             await tick();
