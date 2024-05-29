@@ -1,5 +1,5 @@
 <script>
-  import logo from "../assets/logo.webp";
+  import logo from "$lib/assets/logo.webp";
 </script>
 
 <div class="navbar bg-capanda-light-grey 2xl:px-56 xl:px-28 lg:px-10">

@@ -15,7 +15,10 @@ const config = {
 			fallback: undefined,
 			precompress: false,
 			strict: true
-		})
+		}),
+		paths: {
+			base: '/test' // Temporary subdirectory for testing
+		}
 	},
 	preprocess: vitePreprocess()
 };
