@@ -1,10 +1,11 @@
 <script>
-    import { panelVisibility } from '$lib/store.js';
+    import { panelVisibility, basePath } from '$lib/store.js';
     import { onMount, tick } from 'svelte';
     import { goto } from "$app/navigation";
 
     let panel;
-    let panelOrder = ["/value", "/leadership", "/dedication", "/focus"];
+    let panelOrder = [`${basePath}value`, `${basePath}leadership`, `${basePath}dedication`, `${basePath}focus`];
+
     let currentPanelIndex;
     // async function customGoto(url) {
     //     const scrollY = window.scrollY;
