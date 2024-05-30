@@ -1,37 +1,21 @@
 <script>
-	import { onMount, tick } from 'svelte';
-    import { currentPanel } from "$lib/store.js";
+    import { onMount } from 'svelte';
 
-    let lastPanel;
+    let panel;
 
     onMount(() => {
-        const panelElements = document.querySelectorAll(".panel")
-        const lastPanelIndex = panelElements.length - 1;
-        lastPanel = panelElements[lastPanelIndex];
-        setBodyHeight();
+        panel = document.querySelectorAll(".panel")[0];
+        setBodyColor();
     });
 
-    //Set the height of the body so it reaches the bottom of the page
-    async function setBodyHeight() {
-        await tick(); //Wait for all elements to be rendered
-        let rect = lastPanel.getBoundingClientRect();
-        let pageBottom = rect.top + rect.height;
-
-        document.body.style.height = `${pageBottom}px`;
-    }
-
-    function setBodyColor(panelIndex) {
+    function setBodyColor() {
         if (typeof document === 'undefined') return; // Ensure this runs only in the browser
 
-        const currentPanel = document.querySelectorAll(".panel")[panelIndex];
-        const compStyle = window.getComputedStyle(currentPanel);
-        const currentColor = compStyle.getPropertyValue("background-color");
+        const compStyle = window.getComputedStyle(panel);
+        const currentColor =  compStyle.getPropertyValue("background-color");
 
         document.body.style.backgroundColor = currentColor;
     }
-
-    $: setBodyColor($currentPanel);
-
 </script>
 
 <style>

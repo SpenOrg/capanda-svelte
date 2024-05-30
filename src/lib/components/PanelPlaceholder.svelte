@@ -2,4 +2,4 @@
 
 </script>
 
-<div class="panel min-h-screen w-screen py-10"></div>
+<div class="min-h-screen w-screen py-10"></div>

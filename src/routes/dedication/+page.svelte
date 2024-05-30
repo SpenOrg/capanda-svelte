@@ -3,7 +3,11 @@
     import dedicationImg from "$lib/assets/dedication.webp";
     import Panel from "$lib/Components/Panel.svelte";
     import PanelPlaceholder from "$lib/Components/PanelPlaceholder.svelte"
+    import VisibilityHandler from "$lib/Components/VisibilityHandler.svelte"
+    import BackgroundColorHandler from "../../lib/components/BackgroundColorHandler.svelte";
 </script>
+
+<BackgroundColorHandler/>
 
 <Navbar/>
 
@@ -17,5 +21,7 @@
   bgColorClass="bg-capanda-dark-grey"
   textColorClass="text-white"
 />
+
+<VisibilityHandler/>
 
 <PanelPlaceholder/>

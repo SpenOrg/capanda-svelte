@@ -1,55 +1,42 @@
 <script>
-    import { panelInstanceCount, panelVisibility, currentPanel } from '$lib/store.js';
+    import { panelVisibility } from '$lib/store.js';
     import { onMount, tick } from 'svelte';
+    import { goto } from "$app/navigation";
 
-    let panelCount = 0;
-    let panels = [];
-    let panelsInitialized = false;
+    let panel;
+    let panelOrder = ["/value", "/leadership", "/dedication", "/focus"];
+    let currentPanelIndex;
+    let initialized = false;
 
-    $: panelCount = $panelInstanceCount;
+    // async function customGoto(url) {
+    //     const scrollY = window.scrollY;
 
-    // Create an array with an element representing each panel
-    function initializePanels() {
-        panels = [];
-        const panelElements = document.querySelectorAll(".panel");
-        
-        for (let i = 0; i <= panelCount; i++) {
-            panels[i] = {
-                element: panelElements[i],
-                topVisible: false, // See setVisibilityProperties()
-                bottomVisible: false,
-                show() {
-                    this.element.style.opacity = 100
-                },
-                hide() {
-                    this.element.style.opacity = 0
-                }
-            };
-        }
-        panelsInitialized = true;
+    //     await goto(url, { noscroll: true });
+
+    //     // Ensure scroll restoration after navigation
+    //     setTimeout(() => {
+    //         window.scrollTo(0, scrollY);
+    //     }, 0);
+    // }
+
+    function initializePanel() {
+        currentPanelIndex = panelOrder.indexOf(window.location.pathname);
+
+        panel = {
+            element: document.querySelector(".panel"),
+            topVisible: false, // See setVisibilityProperties()
+            bottomVisible: false,
+        };
         setVisibilityProperties();
-        setPanelPositions();
+        initialized = true;
     }
 
     // Function to set visibility properties of panels
-    function setVisibilityProperties() {
-        if (panelsInitialized) {
-            panels.forEach((panel, i) => {
-                panel.topVisible = panelVisibility[i].top;
-                panel.bottomVisible = panelVisibility[i].bottom;
-            });
-        }
-    }
+    async function setVisibilityProperties() {
+        await tick();
+        panel.topVisible = panelVisibility[0].top;
+        panel.bottomVisible = panelVisibility[0].bottom;
 
-    function switchToPanel(panelIndex) {
-        panels.forEach((panel, i) => {
-            if (i === panelIndex) {
-                currentPanel.set(i);
-                panel.show();
-            } else {
-                panel.hide();
-            }
-        });
     }
 
     // Debounce function to limit the rate of function calls
@@ -61,60 +48,33 @@
         };
     }
 
-    function handleScroll() {
-        setVisibilityProperties();
-        if (panelsInitialized) {
-            panels.forEach((panel, i) => {
-                if (panel.topVisible) {
-                    switchToPanel(i);
-                    return;
-                }
-            });
-        } 
-    }
+    async function handleScrollResize() {
+        await setVisibilityProperties();
 
-    function handleResize() {
-        handleScroll();
-        setPanelPositions();
-    }
-
-    // Sets the "top" position of each panel to the previous panel's .panel-bottom,
-    // which sits just below the content within that panel
-    async function setPanelPositions() {
-        if (panelsInitialized) {
-            await tick();
-            let panelBottomY = []
-            panels.forEach((panel, i) => {
-                let bottomRect = panel.element.querySelector(".panel-bottom").getBoundingClientRect();
-                panelBottomY[i] = bottomRect.top;
-                console.log(panelBottomY);
-                
-                if (i > 0) {
-                    panel.element.style.top = `${panelBottomY[i-1]}px`
-                }
-            });
+        if (!panel.topVisible && panel.bottomVisible && initialized) {
+            if (panelOrder[currentPanelIndex+1] !== undefined) {
+                goto(panelOrder[currentPanelIndex+1], {noScroll: true});
+            }
+        } else if (!panel.topVisible && !panel.bottomVisible && initialized) {
+            if (panelOrder[currentPanelIndex-1] !== undefined) {
+                goto(panelOrder[currentPanelIndex-1], {noScroll: true});
+            }
         }
     }
 
     onMount(() => {
-        initializePanels();
+        initializePanel();
 
-        const debouncedHandleScroll = debounce(handleScroll, 10);
-        const debouncedHandleResize = debounce(handleResize, 100);
+        const debouncedHandleScrollResize = debounce(handleScrollResize, 10);
 
         // Re-check if the panels are visible when the user scrolls or resizes
-        document.addEventListener("scroll", debouncedHandleScroll);
-        document.addEventListener("resize", debouncedHandleResize);
+        document.addEventListener("scroll", debouncedHandleScrollResize);
+        document.addEventListener("resize", debouncedHandleScrollResize);
 
         // Clean up event listeners on component unmount
         return () => {
-            document.removeEventListener("scroll", debouncedHandleScroll);
-            document.removeEventListener("resize", debouncedHandleResize);
+            document.removeEventListener("scroll", debouncedHandleScrollResize);
+            document.removeEventListener("resize", debouncedHandleScrollResize);
         };
     });
-
-    // Re-initialize panels when panelCount changes
-    $: if (panelCount > 0) {
-        initializePanels();
-    }
 </script>

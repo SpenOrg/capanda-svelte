@@ -3,7 +3,11 @@
     import focusImg from "$lib/assets/focus.webp";
     import Panel from "$lib/Components/Panel.svelte";
     import PanelPlaceholder from "$lib/Components/PanelPlaceholder.svelte"
+    import VisibilityHandler from "$lib/Components/VisibilityHandler.svelte"
+    import BackgroundColorHandler from "../../lib/components/BackgroundColorHandler.svelte";
 </script>
+
+<BackgroundColorHandler/>
 
 <Navbar/>
 
@@ -19,3 +23,5 @@
   textColorClass="text-black"
   imageRight=true
 />
+
+<VisibilityHandler/>
