@@ -2,9 +2,10 @@
     import { panelVisibility, basePath } from '$lib/store.js';
     import { onMount, tick } from 'svelte';
     import { goto } from "$app/navigation";
+    import { base } from "$app/paths"
 
     let panel;
-    let panelOrder = [`${basePath}value`, `${basePath}leadership`, `${basePath}dedication`, `${basePath}focus`];
+    let panelOrder = [`${base}/value`, `${base}/leadership`, `${base}/dedication`, `${base}/focus`];
 
     let currentPanelIndex;
     // async function customGoto(url) {
