@@ -1,5 +1,6 @@
 <script>
   import logo from "$lib/assets/logo.webp";
+  import { basePath } from "$lib/store.js"
 </script>
 
 <div class="navbar fixed z-10 bg-capanda-light-grey 2xl:px-56 xl:px-28 lg:px-10">
@@ -8,10 +9,10 @@
   </div>
   <div class="navbar-center">
     <ul class="menu menu-horizontal max-lg:hidden lg:text-xl">
-      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="/value">Value</a></li>
-      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="/leadership">Leadership</a></li>
-      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="/dedication">Dedication</a></li>
-      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="/focus">Focus</a></li>
+      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="{basePath}value">Value</a></li>
+      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="{basePath}leadership">Leadership</a></li>
+      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="{basePath}dedication">Dedication</a></li>
+      <li class="hover:text-capanda-red"><a data-sveltekit-replacestate href="{basePath}focus">Focus</a></li>
     </ul>
   </div>
   <div class="navbar-end">
