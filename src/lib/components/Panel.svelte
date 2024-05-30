@@ -29,6 +29,11 @@
             threshold: 0.1 // 10% of the item is visible
         });
 
+        setTimeout(() => {
+            let panel = panelTop.closest(".panel");
+            panel.style.opacity = 100;
+        }, 10);
+
         observer.observe(panelTop);
         observer.observe(panelBottom);
 
@@ -39,7 +44,8 @@
     });
 </script>
 
-<div class="panel min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity py-10">
+<!-- Panel starts out transparent for a smooth transition -->
+<div class="panel min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity opacity-0 py-10">
     <div class="relative mx-5 xl:m-auto max-w-6xl" style="top:100px">
         <div class="panel-top" bind:this={panelTop}></div>
         <div class="m-auto max-w-fit flex flex-col {imageRight ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center">

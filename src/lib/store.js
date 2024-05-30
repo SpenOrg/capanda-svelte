@@ -4,3 +4,4 @@ export const panelInstanceCount = writable(-1); //Start at -1 so the first panel
 export const panelVisibility = writable({});
 export const currentPanel = writable(0);
 export const basePath = "/";
+export const transitionColor = writable("rgb(14, 44, 87)");
