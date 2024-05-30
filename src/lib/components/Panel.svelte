@@ -3,7 +3,7 @@
     import { panelInstanceCount, panelVisibility } from '$lib/store.js';
 
     export let imageUrl, header, text = [], bgColorClass, textColorClass, imageRight = false;
-    let panelTop, panelBottom, topVisible, bottomVisible, panel, panelNumber;
+    let panelTop, panelBottom, topVisible, bottomVisible;
 
     function handleVisibilityChange(entries) {
         entries.forEach(entry => {
@@ -21,7 +21,6 @@
     }
 
     onMount(() => {
-        panelInstanceCount.update(n => panelNumber = n + 1);
         panelVisibility[0] = { top: false, bottom: false };
 
         const observer = new IntersectionObserver(handleVisibilityChange, {

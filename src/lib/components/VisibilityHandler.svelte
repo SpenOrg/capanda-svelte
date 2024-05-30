@@ -7,16 +7,6 @@
     let panelOrder = [`${basePath}value`, `${basePath}leadership`, `${basePath}dedication`, `${basePath}focus`];
 
     let currentPanelIndex;
-    // async function customGoto(url) {
-    //     const scrollY = window.scrollY;
-
-    //     await goto(url, { noscroll: true });
-
-    //     // Ensure scroll restoration after navigation
-    //     setTimeout(() => {
-    //         window.scrollTo(0, scrollY);
-    //     }, 0);
-    // }
 
     function initializePanel() {
         currentPanelIndex = panelOrder.indexOf(window.location.pathname);
