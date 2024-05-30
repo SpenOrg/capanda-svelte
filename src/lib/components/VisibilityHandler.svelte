@@ -6,8 +6,6 @@
     let panel;
     let panelOrder = ["/value", "/leadership", "/dedication", "/focus"];
     let currentPanelIndex;
-    let initialized = false;
-
     // async function customGoto(url) {
     //     const scrollY = window.scrollY;
 
@@ -28,7 +26,6 @@
             bottomVisible: false,
         };
         setVisibilityProperties();
-        initialized = true;
     }
 
     // Function to set visibility properties of panels
@@ -51,21 +48,19 @@
     async function handleScrollResize() {
         await setVisibilityProperties();
 
-        if (!panel.topVisible && panel.bottomVisible && initialized) {
-            if (panelOrder[currentPanelIndex+1] !== undefined) {
-                goto(panelOrder[currentPanelIndex+1], {noScroll: true});
-            }
-        } else if (!panel.topVisible && !panel.bottomVisible && initialized) {
-            if (panelOrder[currentPanelIndex-1] !== undefined) {
-                goto(panelOrder[currentPanelIndex-1], {noScroll: true});
-            }
+        currentPanelIndex = panelOrder.indexOf(window.location.pathname);
+
+        if (!panel.topVisible && panel.bottomVisible && panelOrder[currentPanelIndex+1] !== undefined) {
+            goto(panelOrder[currentPanelIndex+1], {noScroll: true, replaceState: true});
+        } else if (!panel.topVisible && !panel.bottomVisible && panelOrder[currentPanelIndex-1] !== undefined) {
+            goto(panelOrder[currentPanelIndex-1], {noScroll: true, replaceState: true});
         }
     }
 
     onMount(() => {
         initializePanel();
 
-        const debouncedHandleScrollResize = debounce(handleScrollResize, 10);
+        const debouncedHandleScrollResize = debounce(handleScrollResize, 1);
 
         // Re-check if the panels are visible when the user scrolls or resizes
         document.addEventListener("scroll", debouncedHandleScrollResize);
