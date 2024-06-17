@@ -12,6 +12,7 @@
 <Navbar/>
 
 <PanelPlaceholder/>
+<PanelPlaceholder/>
 
 <Panel
   imageUrl={leadershipImg}

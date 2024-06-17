@@ -11,6 +11,8 @@
 
 <Navbar/>
 
+<PanelPlaceholder/>
+
 <Panel
   imageUrl={valueImg}
   header="Our Value"

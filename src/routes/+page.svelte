@@ -2,18 +2,29 @@
   import Navbar from "$lib/components/Navbar.svelte";
   import panorama from "$lib/assets/panorama.webp";
   import logotext from "$lib/assets/logo-text.webp";
+  import Panel from "$lib/components/Panel.svelte";
+  import PanelPlaceholder from "$lib/components/PanelPlaceholder.svelte";
+  import BackgroundColorHandler from "$lib/components/BackgroundColorHandler.svelte";
+  import VisibilityHandler from "$lib/components/VisibilityHandler.svelte";
 </script>
+
+<BackgroundColorHandler/>
 
 <Navbar/>
 
-<!-- Top Panel -->
-<div class="absolute min-h-screen w-screen text-center text-neutral-content py-10" style="background-image: url({panorama})">
-  <div class="relative mx-5 xl:m-auto max-w-6xl" style="top:100px">
-    <h1>
-      <div class="text-7xl font-light">Build Sustainable Services with</div>
-      <img class="my-5 mx-auto max-h-14" src={logotext} alt="CAPANDA">
-    </h1>
-    <p class="text-xl mb-5">Through hands-on Corporate leadership, CAPANDA will advance your Product, Program, Business-Process, and Software Asset Management needs by applying experience in sustainable digital architecture via service delivery principles & best practices</p>
-    <button class="btn btn-secondary">Hire Us</button>
-  </div>
-</div>
+<Panel
+  topPanel=true
+  imageUrl={panorama}
+  imageUrl2={logotext}
+  imageUrl2Alt="CAPANDA"
+  header="Build Sustainable Services with"
+  text={["Through hands-on Corporate leadership, CAPANDA will advance your Product, Program, Business-Process, and Software Asset Management needs by applying experience in sustainable digital architecture via service delivery principles & best practices"]}
+/>
+
+
+<PanelPlaceholder/>
+<PanelPlaceholder/>
+<PanelPlaceholder/>
+<PanelPlaceholder/>
+
+<VisibilityHandler/>
