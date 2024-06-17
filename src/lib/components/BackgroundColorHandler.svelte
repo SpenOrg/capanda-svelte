@@ -1,43 +1,38 @@
 <script>
-	import { onMount, tick } from 'svelte';
-    import { currentPanel } from "$lib/store.js";
+    import { onMount } from 'svelte';
+    import { transitionColor } from "$lib/store.js";
 
-    let lastPanel;
+    let panel;
+    let previousColor;
 
     onMount(() => {
-        const panelElements = document.querySelectorAll(".panel")
-        const lastPanelIndex = panelElements.length - 1;
-        lastPanel = panelElements[lastPanelIndex];
-        setBodyHeight();
+        transitionColor.subscribe(value => {
+            previousColor = value;
+        })
+
+        setTimeout(() => {
+            document.body.style.backgroundColor = previousColor; //Set background color to previous panel's colour
+
+            panel = document.querySelectorAll(".panel")[0];
+            setBodyColor();
+        }, 10);
     });
 
-    //Set the height of the body so it reaches the bottom of the page
-    async function setBodyHeight() {
-        await tick(); //Wait for all elements to be rendered
-        let rect = lastPanel.getBoundingClientRect();
-        let pageBottom = rect.top + rect.height;
-
-        document.body.style.height = `${pageBottom}px`;
-    }
-
-    function setBodyColor(panelIndex) {
+    function setBodyColor() {
         if (typeof document === 'undefined') return; // Ensure this runs only in the browser
 
-        const currentPanel = document.querySelectorAll(".panel")[panelIndex];
-        const compStyle = window.getComputedStyle(currentPanel);
-        const currentColor = compStyle.getPropertyValue("background-color");
+        const compStyle = window.getComputedStyle(panel);
+        const currentColor =  compStyle.getPropertyValue("background-color");
+        transitionColor.set(currentColor);
 
         document.body.style.backgroundColor = currentColor;
     }
-
-    $: setBodyColor($currentPanel);
-
 </script>
 
 <style>
     :global(body) {
-        /* same as .transition-opacity from tailwind */
-        transition-property: opacity;
+        /* same as .transition-colors from tailwind */
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
     }
