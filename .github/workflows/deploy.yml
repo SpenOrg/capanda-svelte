@@ -24,9 +24,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: List build directory contents
-        run: ls -al build
-
       - name: Deploy to FTP Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -35,4 +32,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./build/
           server-dir: /public_html/test/
-          dry-run: true
+          dry-run: false
