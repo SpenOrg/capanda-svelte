@@ -13,6 +13,7 @@
 
 <PanelPlaceholder/>
 <PanelPlaceholder/>
+<PanelPlaceholder/>
 
 <Panel
   imageUrl={dedicationImg}
