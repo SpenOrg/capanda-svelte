@@ -14,6 +14,7 @@
 <PanelPlaceholder/>
 <PanelPlaceholder/>
 <PanelPlaceholder/>
+<PanelPlaceholder/>
 
 <Panel
   imageUrl={focusImg}
