@@ -1,10 +1,10 @@
 <script>
-    import { panelVisibility, basePath } from '$lib/store.js';
+      import { base } from '$app/paths';
     import { onMount, tick } from 'svelte';
     import { goto } from "$app/navigation";
 
     let panel;
-    let panelOrder = [`${basePath}value`, `${basePath}leadership`, `${basePath}dedication`, `${basePath}focus`];
+    let panelOrder = [`${base}/value`, `${base}/leadership`, `${base}/dedication`, `${base}/focus`];
 
     let currentPanelIndex;
 

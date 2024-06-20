@@ -18,7 +18,7 @@ const config = {
 		}),
 		paths: {
 			base: '/test'
-		}//
+		}
 	},
 	preprocess: vitePreprocess()
 };
