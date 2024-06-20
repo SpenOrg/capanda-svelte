@@ -5,7 +5,7 @@
 
 <div class="navbar fixed z-10 bg-capanda-light-grey 2xl:px-56 xl:px-28 lg:px-10">
   <div class="navbar-start">
-    <a data-sveltekit-replacestate href="{basePath}"><img src={logo} alt="CAPANDA logo" width="248px" height="72px"></a>
+    <a data-sveltekit-replacestate href="{base}"><img src={logo} alt="CAPANDA logo" width="248px" height="72px"></a>
   </div>
   <div class="navbar-center">
     <ul class="menu menu-horizontal max-lg:hidden lg:text-xl">
