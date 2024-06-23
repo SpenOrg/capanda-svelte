@@ -1,5 +1,4 @@
 <script>
-  import Navbar from "$lib/components/Navbar.svelte";
   import panorama from "$lib/assets/panorama.webp";
   import logotext from "$lib/assets/logo-text.webp";
   import Panel from "$lib/components/Panel.svelte";
@@ -9,8 +8,6 @@
 </script>
 
 <BackgroundColorHandler/>
-
-<Navbar/>
 
 <Panel
   topPanel=true

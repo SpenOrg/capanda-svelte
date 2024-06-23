@@ -1,5 +1,4 @@
 <script>
-    import Navbar from "$lib/components/Navbar.svelte";
     import focusImg from "$lib/assets/focus.webp";
     import Panel from "$lib/components/Panel.svelte";
     import PanelPlaceholder from "$lib/components/PanelPlaceholder.svelte"
@@ -8,8 +7,6 @@
 </script>
 
 <BackgroundColorHandler/>
-
-<Navbar/>
 
 <PanelPlaceholder/>
 <PanelPlaceholder/>
