@@ -11,6 +11,7 @@
 <PanelPlaceholder/>
 
 <Panel
+  id="value"
   imageUrl={valueImg}
   header="Our Value"
   text={[
