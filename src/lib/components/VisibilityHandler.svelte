@@ -1,7 +1,8 @@
 <script>
-      import { base } from '$app/paths';
+    import { base } from '$app/paths';
     import { onMount, tick } from 'svelte';
     import { goto } from "$app/navigation";
+    import { panelVisibility } from "$lib/store.js";
 
     let panel;
     let panelOrder = [`${base}/value`, `${base}/leadership`, `${base}/dedication`, `${base}/focus`];
