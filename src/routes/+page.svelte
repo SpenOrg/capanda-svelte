@@ -7,7 +7,7 @@
   import VisibilityHandler from "$lib/components/VisibilityHandler.svelte";
 </script>
 
-<BackgroundColorHandler/>
+<BackgroundColorHandler />
 
 <Panel
   topPanel=true
