@@ -1,8 +1,8 @@
 <script>
     import { onMount } from 'svelte';
-    import { panelInstanceCount, panelVisibility } from '$lib/store.js';
+    import { panelVisibility } from '$lib/store.js';
 
-    export let imageUrl, imageUrl2 = "", imageUrl2Alt = "", header, text = [], bgColorClass = "", textColorClass = "", imageRight = false, topPanel = false;
+    export let imageUrl, imageUrl2 = "", imageUrl2Alt = "", header, text = [], bgColorClass = "", textColorClass = "", imageRight = false, topPanel = false, id;
     let panelTop, panelBottom, topVisible, bottomVisible;
 
     function handleVisibilityChange(entries) {
@@ -57,7 +57,7 @@
     </div>
 {:else}
     <!-- Panel starts out transparent for a smooth transition -->
-    <div class="panel min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity opacity-0 py-10">
+    <div id="{id}" class="panel min-h-screen w-screen {bgColorClass} {textColorClass} transition-opacity opacity-0 py-10">
         <div class="relative mx-5 xl:m-auto max-w-6xl" style="top:100px">
             <div class="panel-top" bind:this={panelTop}></div>
             <div class="m-auto max-w-fit flex flex-col {imageRight ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center">
