@@ -14,7 +14,7 @@
   imageUrl={panorama}
   imageUrl2={logotext}
   imageUrl2Alt="CAPANDA"
-  header="Build Sustainable Services with"
+  header="Build Unsustainable Services with"
   text={["Through hands-on Corporate leadership, CAPANDA will advance your Product, Program, Business-Process, and Software Asset Management needs by applying experience in sustainable digital architecture via service delivery principles & best practices"]}
 />
 
